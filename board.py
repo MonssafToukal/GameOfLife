@@ -4,9 +4,6 @@ class Board:
     def __init__(self, size=10):
         self.size = size
         self.state = np.zeros((self.size, self.size), dtype=int)
-    
-    def init(self, initial_pos: list) -> None:
-        [self.state[coord] := 1 for coord in initial_pos]
 
     def next_state(self) -> None:
         [[self.apply_rules(row, col) for col in range(self.size)] for row in range(self.size)]
