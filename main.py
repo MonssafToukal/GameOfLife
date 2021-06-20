@@ -1,8 +1,5 @@
-from game import Game
-
-def main():
-    game = Game(10, 30, False)
-    game.play()
+from game import Game    
 
 if __name__ == '__main__':
-    main()
+    game = Game(50, 30, False)
+    game.play_game()

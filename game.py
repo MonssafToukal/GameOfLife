@@ -21,12 +21,12 @@ class Game:
         self.size = grid_size
         self.fps = fps
         self.play = play
-        self.state = Board(grid_size)
+        self.board = Board(grid_size)
     
     def next(self) -> None:
-        self.state.next_state()
+        self.board.next_state()
     
-    def play(self) -> None:    
+    def play_game(self) -> None:    
         pygame.init()
         clock = pygame.time.Clock()
         screen = pygame.display.set_mode((self.size ** 2, self.size ** 2))
@@ -55,16 +55,16 @@ class Game:
                     pos_x, pos_y = pygame.mouse.get_pos()
                     row = floor(pos_x / self.size)
                     col = floor(pos_y / self.size)
-                    if self.grid[row, col]:
-                        self.grid[row, col] = 0
+                    if self.board.state[row, col]:
+                        self.board.state[row, col] = 0
                     else:
-                        self.grid[row, col] = 1
+                        self.board.state[row, col] = 1
 
             self.next()
 
             for row in range(0, self.size):
                 for col in range(0, self.size):
-                    if self.grid[row, col]:
+                    if self.board.state[row, col]:
                         if game_mode:
                             pygame.draw.rect(
                                 screen, choice([R, O, Y, G, B, I, V]), (row * self.size, col * self.size, self.size, self.size), 0
