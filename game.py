@@ -1,4 +1,4 @@
-from board import Board
+from board import Board, np
 import pygame
 from random import choice
 import sys
@@ -24,7 +24,9 @@ class Game:
         self.board = Board(grid_size)
     
     def next(self) -> None:
-        self.board.next_state()
+        if self.play:
+            self.board.next_state()
+            print("hello")
     
     def play_game(self) -> None:    
         pygame.init()
@@ -59,8 +61,8 @@ class Game:
                         self.board.state[row, col] = 0
                     else:
                         self.board.state[row, col] = 1
-
-            self.next()
+                    
+                self.next()
 
             for row in range(0, self.size):
                 for col in range(0, self.size):
